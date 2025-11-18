@@ -1,184 +1,221 @@
+/* Ripartiamo con uno stile più definito e moderno */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #eef1f6;
-    color: #333;
+    background-color: #1a202c; /* Sfondo scuro per contrasto e modernità */
+    color: #cbd5e0; /* Testo chiaro */
     line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
-/* Elementi di impatto (simili a widget) */
+/* Header & Card: Palette Amazon + Corporate */
+header {
+    background: linear-gradient(135deg, #ff9900, #ff4500); /* Arancione Amazon + Rosso */
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
 .card {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    background-color: #2d3748; /* Sfondo scuro per i widget */
+    color: #e2e8f0;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4a5568; /* Bordo sottile */
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-}
-
-header {
-    background: linear-gradient(90deg, #007bff, #0056b3); /* Sfondo gradiente più forte */
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.header-content i {
-    font-size: 2em;
-    margin-right: 15px;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .container {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin: 30px 0;
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 25px;
 }
 
 /* Pannello Controlli (Selettore) */
 .controls-panel {
-    border-left: 6px solid #007bff;
-    margin-bottom: 30px;
+    border-left: 6px solid #48bb78; /* Verde ESG */
+    margin-bottom: 40px;
 }
 
 .controls-panel h2 {
-    color: #007bff;
+    color: #48bb78;
     margin-top: 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #4a5568;
     padding-bottom: 10px;
 }
 
-.impact-message {
-    font-weight: bold;
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    /* Default: Verde (High) */
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    transition: all 0.5s;
+.control-group label, .control-group select {
+    font-size: 1.1em;
+    color: #e2e8f0;
 }
+
+select#performance-level {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #1a202c;
+    color: #48bb78;
+    border: 1px solid #48bb78;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+select#performance-level:hover {
+    background-color: #2d3748;
+}
+
+.impact-message {
+    /* Colori dinamici gestiti da JS */
+    font-size: 1.1em;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
 
 /* DASHBOARD KPI GRID */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonne */
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
 }
 
 .kpi-card {
-    min-height: 200px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: center;
 }
 
 .perspective-icon {
-    font-size: 2.5em;
-    color: #007bff;
+    font-size: 3em;
+    color: #48bb78; /* Verde ESG */
     margin-bottom: 10px;
 }
 
 .kpi-card h3 {
     margin-top: 0;
-    color: #333;
+    color: #48bb78;
 }
 
 .kpi-value {
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
-    color: #007bff;
+    color: #ff9900; /* Arancione per i valori */
     margin-top: 5px;
 }
 
-/* Indicatore dinamico (Semforo) */
+/* Indicatore dinamico (Semforo) - Ora più sottile */
 .indicator {
-    padding: 8px;
-    border-radius: 6px;
+    padding: 10px;
+    border-radius: 8px;
     font-weight: bold;
-    transition: background-color 0.5s;
+    color: #1a202c; /* Testo scuro sul colore dello stato */
+    transition: all 0.5s ease;
     margin-bottom: 10px;
 }
 
-/* Colori Base per l'Indicatore (Sovrascritti da JS) */
-/* Colore base (Verde) */
-.indicator { background-color: #4caf50; color: white; } 
-
-/* MAPPA STRATEGICA E BUDGET */
+/* Mappa Strategica e Budget */
 .strategic-budget-area {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Mappa più grande, Budget più piccolo */
-    gap: 20px;
-    margin-top: 30px;
+    grid-template-columns: 3fr 1fr; /* Mappa più grande */
+    gap: 25px;
+    margin-top: 40px;
 }
 
-.strategic-map h2 { color: #007bff; }
-.strategic-map p { font-size: 0.9em; color: #555; }
+.strategic-map h2 { color: #ff9900; }
+.strategic-map p { font-size: 0.95em; color: #a0aec0; }
 
-/* Budget Visualization */
-.budget-viz h2 { color: #007bff; }
-
-.chart-container {
-    display: flex;
-    align-items: flex-end;
-    height: 200px;
-    border-bottom: 2px solid #ccc;
-    padding-top: 10px;
-    margin-bottom: 15px;
-}
-
-.bar {
-    width: 25%;
-    margin: 0 2px;
-    background-color: #ff9800;
-    color: white;
-    text-align: center;
-    padding-top: 5px;
-    font-size: 0.8em;
-    font-weight: bold;
-    transition: height 0.5s;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* Altezza barre (come nell'esempio precedente) */
-#bar-flotta { height: 100%; } 
-#bar-marketing { height: 20%; }
-#bar-formazione { height: 10%; }
-#bar-routing { height: 5%; }
-
+/* Budget Visualization: Da barre a Doughnut (Simulato via CSS/JS per semplicità) */
+.budget-viz h2 { color: #ff9900; }
 .budget-status {
     font-weight: bold;
-    padding: 10px;
-    border-radius: 4px;
-    background-color: #f0f8ff;
-    border: 1px solid #007bff;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #1a202c;
+    border: 2px solid #ff9900;
+    margin-top: 15px;
+    text-align: center;
 }
 
-/* Responsive (opzionale ma consigliato per i professori su diversi dispositivi) */
-@media (max-width: 900px) {
+/* GRAFICO DOUGHNUT SIMULATO (La parte più d'impatto) */
+.chart-container {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Simula il Doughnut Chart con un singolo div e conic-gradient */
+#doughnut-chart {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    position: relative;
+    transition: background 1s ease; /* Transizione fluida per l'aggiornamento */
+    /* Lo sfondo e le proporzioni sono gestite dinamicamente da JS! */
+}
+
+#doughnut-chart::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px; /* Buco centrale */
+    height: 100px;
+    background: #2d3748; /* Sfondo della card */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.chart-legend {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.85em;
+    color: #a0aec0;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #718096;
+    font-size: 0.9em;
+    border-top: 1px solid #4a5568;
+    margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
     .dashboard-grid {
-        grid-template-columns: 1fr 1fr; /* 2 colonne su schermi medi */
+        grid-template-columns: 1fr 1fr;
     }
     .strategic-budget-area {
-        grid-template-columns: 1fr; /* 1 colonna su schermi piccoli */
+        grid-template-columns: 1fr;
     }
 }
 @media (max-width: 600px) {
     .dashboard-grid {
-        grid-template-columns: 1fr; /* 1 colonna su mobile */
+        grid-template-columns: 1fr;
     }
 }
