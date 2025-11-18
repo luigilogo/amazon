@@ -1,46 +1,47 @@
-/* Stile 4.0: Clean Corporate con Profondità */
+/* Stile 5.0: Futuristic Consulting (Aero/Neon) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 body {
-    font-family: 'Poppins', sans-serif; /* Font moderno */
-    background-color: #f7f9fc; /* Sfondo molto chiaro */
-    color: #333;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d1117; /* Sfondo molto scuro per contrasto */
+    color: #c9d1d9; /* Testo chiaro */
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    /* Importante per le ombreggiature soft */
-    -webkit-font-smoothing: antialiased;
+    /* Aggiunge un effetto leggero di sfondo */
+    background-image: radial-gradient(circle at top right, #1f2733 1px, transparent 1px);
+    background-size: 20px 20px;
 }
 
-/* Elementi di Impatto (Card) */
+/* Glassmorphism Card Effect */
 .card {
-    background-color: #ffffff; 
-    color: #4a4a4a;
+    background: rgba(30, 41, 59, 0.6); /* Sfondo semi-trasparente */
+    backdrop-filter: blur(10px); /* Effetto sfocato (Glassmorphism) */
+    -webkit-backdrop-filter: blur(10px); 
+    border-radius: 16px;
     padding: 25px;
-    border-radius: 12px;
-    /* Ombreggiatura complessa per effetto 3D/Profondità */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    border-top: 5px solid transparent; /* Da riempire dinamicamente */
+    border: 1px solid rgba(139, 148, 158, 0.2); /* Bordo sottile e sfocato */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 16px 64px 0 rgba(0, 0, 0, 0.5), 0 0 10px #42a5f5; /* Aggiunge un leggero bagliore blu */
 }
 
 header {
-    /* Gradiente aziendale forte per l'header */
-    background: linear-gradient(135deg, #007bff, #0056b3); 
+    background: #10151c; 
     color: white;
     padding: 30px 0;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
+    border-bottom: 2px solid #42a5f5; /* Linea di accento blu */
 }
 
 .header-content i {
-    font-size: 2.2em;
-    margin-right: 15px;
-    color: #ffc107; /* Accento giallo/oro */
+    font-size: 2.5em;
+    color: #ff9900; /* Arancione Amazon */
+    text-shadow: 0 0 5px #ff9900; /* Neon effect */
 }
 
 .container {
@@ -49,45 +50,62 @@ header {
     padding: 0 25px;
 }
 
-/* Pannello Controlli */
+/* Controlli e Score di Allineamento (Il VERO Impatto) */
 .controls-panel {
-    border: 1px solid #e0e0e0; 
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
     margin-bottom: 40px;
-}
-
-.controls-panel h2 {
-    color: #007bff;
-    margin-top: 0;
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 10px;
 }
 
 .control-group label {
     font-weight: 600;
-    color: #555;
+    color: #42a5f5;
+    margin-right: 15px;
 }
 
 select#performance-level {
     padding: 10px;
     border-radius: 8px;
-    background-color: #fff;
-    color: #007bff;
-    border: 1px solid #007bff;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #1a2330;
+    color: #66bb6a;
+    border: 1px solid #66bb6a;
     cursor: pointer;
-    font-size: 1em;
+}
+
+.alignment-score {
+    text-align: center;
+    border-left: 2px solid #ff9900;
+    padding-left: 20px;
+}
+
+.score-label {
+    font-size: 0.9em;
+    color: #ff9900;
+    font-weight: 600;
+    display: block;
+}
+
+.score-value {
+    font-size: 3em;
+    font-weight: 700;
+    color: #66bb6a; /* Default: Verde */
+    transition: color 0.5s ease;
+    text-shadow: 0 0 10px rgba(102, 187, 106, 0.8); /* Neon effect */
 }
 
 .impact-message {
+    /* Colori gestiti da JS */
     font-size: 1.1em;
-    padding: 18px;
+    padding: 15px;
     border-radius: 8px;
-    margin-top: 20px;
     font-weight: 500;
+    flex-basis: 100%; /* Occupa una riga sotto i controlli */
+    margin-top: 15px;
+    border: 1px solid;
+    transition: background-color 0.5s, color 0.5s;
 }
-
 
 /* DASHBOARD KPI GRID */
 .dashboard-grid {
@@ -97,50 +115,48 @@ select#performance-level {
 }
 
 .kpi-card {
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    text-align: center;
+    padding: 30px;
+    border-top: 4px solid transparent; /* Per la linea di stato superiore */
+    min-height: 180px;
 }
 
-.perspective-icon {
-    font-size: 3em;
-    color: #ff9900; /* Arancione Amazon per le icone */
-    margin-bottom: 15px;
+.kpi-card i {
+    font-size: 2.5em;
+    color: #ff9900;
+    margin-bottom: 10px;
 }
 
 .kpi-card h3 {
     margin-top: 0;
-    color: #007bff;
+    color: #42a5f5; /* Blu accento */
     font-weight: 600;
+    font-size: 1.2em;
 }
 
-.kpi-card p {
-    margin: 0;
-    font-size: 0.9em;
+.kpi-target {
+    font-size: 0.8em;
+    color: #94a3b8;
+    margin: 5px 0 15px 0;
+}
+
+/* Indicatore dinamico */
+.indicator {
+    padding: 8px;
+    border-radius: 50px; 
+    font-weight: 700;
+    color: #10151c; /* Testo scuro sul colore di stato */
+    transition: all 0.5s ease;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .kpi-value {
-    font-size: 2em;
-    font-weight: 700;
-    color: #333;
-    margin-top: 10px;
+    font-size: 1.5em;
+    color: inherit; /* Eredita dal colore di stato */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
 }
 
-/* Indicatore dinamico (Pillola di Stato) */
-.indicator {
-    padding: 6px 15px;
-    border-radius: 50px; /* Forma a pillola */
-    font-weight: 600;
-    color: white;
-    transition: all 0.5s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
-}
-
-/* Mappa Strategica e Budget (Layout Flessibile) */
+/* Mappa Strategica & Budget */
 .strategic-budget-area {
     display: flex;
     gap: 25px;
@@ -148,24 +164,16 @@ select#performance-level {
 }
 
 .strategic-map {
-    flex: 2; /* Mappa più grande */
+    flex: 3; 
 }
 
 .budget-viz {
-    flex: 1; /* Budget più piccolo */
+    flex: 2; 
 }
 
+.strategic-map h2 { color: #42a5f5; }
 
-.strategic-map h2 { color: #007bff; }
-.strategic-map p { font-size: 0.95em; color: #666; }
-
-/* Visualizzazione Budget Doughnut */
-.budget-viz h2 { 
-    color: #ff9900; 
-    border-bottom: 2px solid #ff9900;
-    padding-bottom: 5px;
-}
-
+/* Doughnut Chart Styling */
 .chart-container {
     height: 250px;
     width: 100%;
@@ -176,15 +184,14 @@ select#performance-level {
     margin-top: 15px;
 }
 
-/* Doughnut Chart Styling */
 #doughnut-chart {
     height: 200px;
     width: 200px;
     border-radius: 50%;
     position: relative;
     transition: background 1s ease;
-    /* Aggiungiamo un bordo elegante */
-    border: 5px solid #e0e0e0;
+    border: 5px solid #1a2330;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
 }
 
 #doughnut-chart::after {
@@ -192,21 +199,22 @@ select#performance-level {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 110px; /* Buco centrale più grande */
+    width: 110px; 
     height: 110px;
-    background: #ffffff; 
+    background: #10151c; /* Sfondo del centro */
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9);
 }
 .budget-status {
-    font-weight: 700;
+    font-weight: 600;
     padding: 15px;
     border-radius: 8px;
-    background-color: #f0f4ff;
-    border: 1px solid #007bff;
+    background-color: #1a2330;
+    border: 1px solid #ff9900;
     margin-top: 20px;
     text-align: center;
+    color: #ff9900;
 }
 .chart-legend {
     margin-top: 20px;
@@ -214,31 +222,32 @@ select#performance-level {
     flex-wrap: wrap;
     justify-content: space-between;
     font-size: 0.85em;
-    color: #666;
+    color: #94a3b8;
 }
 .legend-item {
     display: flex;
     align-items: center;
     margin: 5px 0;
-    width: 48%; /* Per disporre su due colonne */
+    width: 48%; 
 }
 .legend-color {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     margin-right: 8px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 footer {
     text-align: center;
     padding: 20px;
-    color: #999;
+    color: #718096;
     font-size: 0.85em;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #1a2330;
     margin-top: 40px;
 }
 
-/* Responsive */
+/* Responsive (Mantenuto) */
 @media (max-width: 1024px) {
     .dashboard-grid {
         grid-template-columns: 1fr 1fr;
@@ -246,12 +255,16 @@ footer {
     .strategic-budget-area {
         flex-direction: column;
     }
+    .controls-panel {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .alignment-score {
+        margin-top: 15px;
+    }
 }
 @media (max-width: 600px) {
     .dashboard-grid {
         grid-template-columns: 1fr;
-    }
-    .legend-item {
-        width: 100%;
     }
 }
