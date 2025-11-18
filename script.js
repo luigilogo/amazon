@@ -1,25 +1,48 @@
-// Mappa dei colori e messaggi in base al livello di performance selezionato
+// Dati completi per ogni scenario di performance
 const performanceData = {
     high: {
-        color: { bg: '#c8e6c9', border: '#388e3c' }, // Verde
-        message: 'Performance eccellente: i KPI mostrano un impatto positivo sui costi operativi e sull\'adozione ESG!',
-        messageColor: { bg: '#e8f5e9', text: '#388e3c' }
+        status: 'Ottimale',
+        kpi_finanziaria: '-4.8%',
+        kpi_clienti: '+21.5%',
+        kpi_interni: '45.0%',
+        kpi_apprendimento: '1.550',
+        color: '#4caf50', // Verde
+        bg: '#e8f5e9',
+        message: 'Performance ottimale: l\'esecuzione delle iniziative ESG (Flotta e Formazione) sta riducendo il Costo per Spedizione (CPS) e stimolando la domanda di prodotti sostenibili.',
+        budget_status: '**€135M** (Completamente Allineato alla Strategia)',
+        bar_flotta_height: '100%',
+        bar_flotta_text: 'Flotta Elettrica (€100M)',
     },
     medium: {
-        color: { bg: '#ffecb3', border: '#ffc107' }, // Giallo
-        message: 'Performance al limite del Target: è necessario un monitoraggio intensivo, soprattutto sui KPI di Processi Interni.',
-        messageColor: { bg: '#fffde7', text: '#ffc107' }
+        status: 'Attenzione',
+        kpi_finanziaria: '-2.5%', // Vicino al target (-5%) ma non ottimale
+        kpi_clienti: '+18.0%', // Vicino al target (+20%)
+        kpi_interni: '35.0%', // Lontano dal target (50%) - Processo in ritardo
+        kpi_apprendimento: '1.200',
+        color: '#ffc107', // Giallo
+        bg: '#fffde7',
+        message: 'Performance a rischio: il ritardo nell\'implementazione della logistica Elettrica (Interni) sta limitando la riduzione del CPS. Intervento urgente sui Processi.',
+        budget_status: '**€125M** (10M non spesi, ritardo iniziative)',
+        bar_flotta_height: '90%', // Simulazione: 10M non spesi in Flotta
+        bar_flotta_text: 'Flotta Elettrica (€90M)',
     },
     low: {
-        color: { bg: '#ffcdd2', border: '#e53935' }, // Rosso
-        message: 'Performance sotto il Target: le iniziative chiave (Flotta Elettrica) sono in ritardo, impattando negativamente il Costo per Spedizione (CPS).',
-        messageColor: { bg: '#fbe9e7', text: '#e53935' }
+        status: 'Critico',
+        kpi_finanziaria: '+1.2%', // Aumento del costo (effetto negativo)
+        kpi_clienti: '+5.0%',
+        kpi_interni: '20.0%',
+        kpi_apprendimento: '500',
+        color: '#f44336', // Rosso
+        bg: '#fbe9e7',
+        message: 'Performance critica: Fallimento nell\'esecuzione della strategia ESG. Il CPS è in aumento a causa della mancanza di investimenti in Flotta e Formazione. Rivedere l\'allocazione del Budget.',
+        budget_status: '**€100M** (35M bloccati o non spesi)',
+        bar_flotta_height: '70%', // Simulazione: 30M non spesi in Flotta
+        bar_flotta_text: 'Flotta Elettrica (€70M - CRITICO)',
     }
 };
 
 /**
- * Funzione per aggiornare la dashboard in base al selettore di performance.
- * Questo genera l'effetto shock dinamico.
+ * Funzione per aggiornare l'intera dashboard in base allo scenario selezionato.
  */
 function updateDashboard() {
     const level = document.getElementById('performance-level').value;
@@ -27,30 +50,43 @@ function updateDashboard() {
     
     if (!data) return;
 
-    // 1. Aggiorna i colori della Mappa Strategica
-    const perspectives = document.querySelectorAll('.perspective');
-    perspectives.forEach(p => {
-        p.style.backgroundColor = data.color.bg;
-        p.style.borderLeft = `5px solid ${data.color.border}`;
-    });
+    // 1. Aggiorna i KPI Dettagliati
+    const kpi_elements = {
+        'finanziaria': { value: data.kpi_finanziaria, target: '#ind-finanziaria', card: '#kpi-finanziaria' },
+        'clienti': { value: data.kpi_clienti, target: '#ind-clienti', card: '#kpi-clienti' },
+        'interni': { value: data.kpi_interni, target: '#ind-interni', card: '#kpi-interni' },
+        'apprendimento': { value: data.kpi_apprendimento, target: '#ind-apprendimento', card: '#kpi-apprendimento' },
+    };
 
-    // 2. Aggiorna il messaggio di Impatto Strategico
+    for (const key in kpi_elements) {
+        const { value, target, card } = kpi_elements[key];
+        
+        // Aggiorna il valore numerico
+        document.querySelector(`#kpi-${key} .kpi-value`).innerHTML = `Valore Attuale: **${value}**`;
+        
+        // Aggiorna l'indicatore di stato e colore
+        const indicator = document.querySelector(target);
+        indicator.querySelector('.status-text').textContent = `Stato: ${data.status}`;
+        indicator.style.backgroundColor = data.color;
+        
+        // Aggiorna il bordo della card (per un impatto visivo ancora maggiore)
+        document.querySelector(card).style.borderBottom = `5px solid ${data.color}`;
+    }
+
+    // 2. Aggiorna il Messaggio di Impatto Strategico
     const impactMessage = document.getElementById('impact-message');
     impactMessage.textContent = data.message;
-    impactMessage.style.backgroundColor = data.messageColor.bg;
-    impactMessage.style.color = data.messageColor.text;
+    impactMessage.style.backgroundColor = data.bg;
+    impactMessage.style.color = data.color;
+    
+    // 3. Aggiorna la Visualizzazione del Budget (Barra Flotta)
+    document.getElementById('budget-status').innerHTML = `Status Budget: ${data.budget_status}`;
+    document.getElementById('bar-flotta').style.height = data.bar_flotta_height;
+    document.getElementById('bar-flotta').textContent = data.bar_flotta_text;
 
-    // 3. Esempio di visualizzazione Budget (Opzionale: potresti
-    // cambiare l'altezza di una barra per mostrare dove è stato speso meno)
-    // Esempio: Se LOW, simuliamo un basso investimento in Flotta (bar-flotta)
-    if (level === 'low') {
-        document.getElementById('bar-flotta').style.height = '70%'; // Simulazione: 30% del budget non speso
-        document.getElementById('bar-flotta').textContent = 'Flotta Elettrica (Solo €70M)';
-    } else {
-        document.getElementById('bar-flotta').style.height = '100%';
-        document.getElementById('bar-flotta').textContent = 'Flotta Elettrica (€100M)';
-    }
+    // Colora anche la barra di Flotta in base allo stato
+    document.getElementById('bar-flotta').style.backgroundColor = (level === 'low') ? '#d32f2f' : '#ff9800'; 
 }
 
-// Inizializza la dashboard al caricamento della pagina con il valore di default ('high')
+// Inizializza la dashboard al caricamento della pagina
 document.addEventListener('DOMContentLoaded', updateDashboard);
