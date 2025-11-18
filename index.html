@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon Strategic Dashboard V2.0 (ESG & Digital)</title>
+    <title>Strategic Execution Simulator - FDX Consulting</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -11,98 +11,94 @@
 
     <header>
         <div class="header-content">
-            <i class="fas fa-chart-line"></i>
-            <h1>Amazon Strategic Dashboard: Execution ESG & Logistica</h1>
-            <p>Balanced Scorecard Interattiva - Progetto Assessment FDX Consulting</p>
+            <i class="fas fa-microchip"></i>
+            <h1>AMAZON STRATEGIC EXECUTION SIMULATOR</h1>
+            <p>Balanced Scorecard & Budget Alignment: Digital ESG Focus</p>
         </div>
     </header>
 
     <div class="container">
         
         <div class="controls-panel card">
-            <h2>Simulazione Scenari (Effetto Shock)</h2>
             <div class="control-group">
-                <label for="performance-level">Scegli il Livello di Esecuzione Strategica:</label>
+                <label for="performance-level"><i class="fas fa-sliders-h"></i> SIMULATORE DI SCENARIO:</label>
                 <select id="performance-level" onchange="updateDashboard()">
-                    <option value="high" selected>Target Raggiunto (Ottimale)</option>
-                    <option value="medium">Vicino al Target (Attenzione)</option>
-                    <option value="low">Sotto il Target (Critico)</option>
+                    <option value="high" selected>Scenario 1: Allineamento Ottimale</option>
+                    <option value="medium">Scenario 2: Rischio Processi Interni</option>
+                    <option value="low">Scenario 3: Crisi Strategica</option>
                 </select>
             </div>
-            <div class="impact-message" id="impact-message">Performance ottimale: tutti i KPI sono in verde, l'efficienza dei costi è garantita!</div>
+            
+            <div class="alignment-score" id="alignment-score-box">
+                <span class="score-label">BUDGET ALIGNMENT SCORE:</span>
+                <span class="score-value" id="alignment-score">98%</span>
+            </div>
+
+            <div class="impact-message" id="impact-message">Performance eccellente: i KPI indicano una piena riuscita della strategia ESG/Logistica.</div>
         </div>
 
-        <hr>
-
         <div class="dashboard-grid">
-            
-            <div class="kpi-card card" id="kpi-finanziaria">
-                <i class="fas fa-sack-dollar perspective-icon"></i>
-                <h3>FINANZIARIA: Costo per Spedizione (CPS)</h3>
-                <p>Obiettivo: Riduzione del 5% annuo</p>
+            <div class="kpi-card card" id="kpi-finanziaria" data-perspective="FINANZIARIA">
+                <i class="fas fa-sack-dollar"></i>
+                <h3>Costo per Spedizione (CPS)</h3>
+                <p class="kpi-target">Target: Riduzione del 5% annuo</p>
                 <div class="indicator" id="ind-finanziaria">
-                    <span class="status-text">Stato: Ottimale</span>
+                    <span class="kpi-value"></span>
                 </div>
-                <p class="kpi-value">Valore Attuale: **-4.8%**</p>
             </div>
 
-            <div class="kpi-card card" id="kpi-clienti">
-                <i class="fas fa-handshake perspective-icon"></i>
-                <h3>CLIENTI: Tasso Acquisto Prodotti Sostenibili</h3>
-                <p>Obiettivo: Aumento del 20%</p>
+            <div class="kpi-card card" id="kpi-clienti" data-perspective="CLIENTI">
+                <i class="fas fa-leaf"></i>
+                <h3>Acquisto Prodotti Sostenibili</h3>
+                <p class="kpi-target">Target: Aumento del 20%</p>
                 <div class="indicator" id="ind-clienti">
-                    <span class="status-text">Stato: Ottimale</span>
+                    <span class="kpi-value"></span>
                 </div>
-                <p class="kpi-value">Valore Attuale: **+21.5%**</p>
             </div>
 
-            <div class="kpi-card card" id="kpi-interni">
-                <i class="fas fa-truck-fast perspective-icon"></i>
-                <h3>PROCESSI: Logistica Ultimo Miglio Elettrica</h3>
-                <p>Obiettivo: Raggiungere il 50%</p>
+            <div class="kpi-card card" id="kpi-interni" data-perspective="PROCESSI">
+                <i class="fas fa-truck-moving"></i>
+                <h3>Logistica Ultimo Miglio Elettrica</h3>
+                <p class="kpi-target">Target: Raggiungere il 50%</p>
                 <div class="indicator" id="ind-interni">
-                    <span class="status-text">Stato: Ottimale</span>
+                    <span class="kpi-value"></span>
                 </div>
-                <p class="kpi-value">Valore Attuale: **45.0%**</p>
             </div>
 
-            <div class="kpi-card card" id="kpi-apprendimento">
-                <i class="fas fa-graduation-cap perspective-icon"></i>
-                <h3>CRESCITA: Dipendenti Certificati Green Tech</h3>
-                <p>Obiettivo: Aumento di 1.500 certificazioni</p>
+            <div class="kpi-card card" id="kpi-apprendimento" data-perspective="CRESCITA">
+                <i class="fas fa-user-gear"></i>
+                <h3>Certificazioni Green Tech</h3>
+                <p class="kpi-target">Target: Aumento di 1.500</p>
                 <div class="indicator" id="ind-apprendimento">
-                    <span class="status-text">Stato: Ottimale</span>
+                    <span class="kpi-value"></span>
                 </div>
-                <p class="kpi-value">Valore Attuale: **1.550**</p>
             </div>
         </div>
 
         <div class="strategic-budget-area">
             
             <div class="strategic-map card">
-                <h2>Mappa Strategica: Relazioni Causa-Effetto</h2>
+                <h2><i class="fas fa-route"></i> MAPPA STRATEGICA (Causa-Effetto)</h2>
                 <div id="map-diagram">
-                    <p>La Mappa è la base della BSC: clicca sui KPI qui sopra per i dettagli!</p>
-                    <p>La relazione chiave: Investire in Formazione (Crescita) -> Permette l'Ottimizzazione dei Processi (Interni) -> Soddisfa i Clienti ESG (Clienti) -> Porta a Costi Operativi Minori (Finanziaria).</p></div>
+                    <p>La BSC di Amazon (ESG/Logistica) è un sistema di causa-effetto: Investimenti in **Crescita** e **Processi** abilitano la fedeltà del **Cliente**, portando a risultati **Finanziari** .</p>
+                    <p>Usa il simulatore in alto per vedere l'impatto sul Budget Alignment Score.</p>
+                </div>
             </div>
 
             <div class="budget-viz card">
-                <h2>Budgeting: Allocazione Strategica Iniziativa Flotta</h2>
-                <p>Esplicitazione Strategia: Il budget di €135M riflette l'alta priorità dell'iniziativa per la riduzione del CPS (Costo per Spedizione).</p>
+                <h2><i class="fas fa-chart-pie"></i> BUDGET ALLOCATO</h2>
                 <div class="chart-container">
-                    <div class="bar" id="bar-flotta">Flotta Elettrica (€100M)</div>
-                    <div class="bar" id="bar-marketing">Marketing (€20M)</div>
-                    <div class="bar" id="bar-formazione">Formazione (€10M)</div>
-                    <div class="bar" id="bar-routing">Routing (€5M)</div>
+                    <div id="doughnut-chart"></div>
                 </div>
-                <div class="budget-status" id="budget-status">Status Budget: **€135M** (Completamente Allineato alla Strategia)</div>
+                
+                <div class="chart-legend"></div>
+                <div class="budget-status" id="budget-status"></div>
             </div>
         </div>
-
     </div>
 
     <footer>
-        <p>Progetto elaborato per l'Università di Torino / Dipartimento di Management. Interagisci con la simulazione in alto per visualizzare l'impatto dell'execution.</p>
+        <p>Progetto: Università di Torino | FDX Consulting | Assessment Strategico</p>
     </footer>
 
     <script src="script.js"></script>
