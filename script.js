@@ -1,19 +1,20 @@
-// Costanti e Colori (Più neon/digitali)
+// Costanti e Colori (Palette Corporate)
 const total_budget = 135; // Budget totale teorico in milioni
+
 const budgetColors = {
-    flotta: '#66bb6a', // Verde (Successo)
-    marketing: '#ff9900', // Arancione (Amazon Accento)
-    formazione: '#42a5f5', // Blu (Investimento HR/Digital)
-    routing: '#9f7aea' // Viola (Tech/Algoritmi)
+    flotta: '#4caf50', // Verde scuro per ESG
+    marketing: '#ff9900', // Arancione Amazon
+    formazione: '#007bff', // Blu Corporate
+    routing: '#9c27b0' // Viola Tech
 };
 
 const performanceData = {
     high: {
         status: 'OTTIMALE',
         kpi_finanziaria: '-4.8%', kpi_clienti: '+21.5%', kpi_interni: '45.0%', kpi_apprendimento: '1.550',
-        color: '#66bb6a', // Verde Neon
-        bg: 'rgba(102, 187, 106, 0.1)',
-        message: 'Performance ECCELLENTE. La strategia ESG sta generando valore. Budget pienamente allocato e allineato. Il legame causa-effetto è confermato.',
+        color: '#4caf50', // Verde Successo
+        bg: '#e8f5e9',
+        message: 'Performance OTTIMALE. Budget pienamente allocato e allineato. Il successo nelle iniziative ESG (Processi e Crescita) ha generato una riduzione dei costi (CPS).',
         total_speso: 135,
         flotta_spesa: 100,
         alignment_score: 98,
@@ -21,9 +22,9 @@ const performanceData = {
     medium: {
         status: 'ATTENZIONE',
         kpi_finanziaria: '-2.5%', kpi_clienti: '+18.0%', kpi_interni: '35.0%', kpi_apprendimento: '1.200',
-        color: '#ffc107', // Giallo
-        bg: 'rgba(255, 193, 7, 0.1)',
-        message: 'Performance in ATTENZIONE. La spesa per Flotta Elettrica è in ritardo (-€10M) a causa di inefficienze nei Processi Interni. L\'allineamento è compromesso.',
+        color: '#ffc107', // Giallo Warning
+        bg: '#fff8e1',
+        message: 'Performance in ATTENZIONE. La spesa per Flotta Elettrica è in ritardo (-€10M). La logistica (Processi Interni) non raggiunge il target, limitando l\'impatto sul CPS.',
         total_speso: 125,
         flotta_spesa: 90,
         alignment_score: 75,
@@ -31,9 +32,9 @@ const performanceData = {
     low: {
         status: 'CRITICO',
         kpi_finanziaria: '+1.2%', kpi_clienti: '+5.0%', kpi_interni: '20.0%', kpi_apprendimento: '500',
-        color: '#e53935', // Rosso
-        bg: 'rgba(229, 57, 53, 0.1)',
-        message: 'Performance CRITICA. La mancanza di allineamento del Budget (-€35M non spesi) ha causato il fallimento di tutti gli obiettivi BSC, portando ad un aumento dei costi (CPS).',
+        color: '#e53935', // Rosso Critico
+        bg: '#fbe9e7',
+        message: 'Performance CRITICA. Budget sottoutilizzato (-€35M). Il mancato allineamento ha causato il fallimento di tutti gli obiettivi BSC, portando ad un aumento dei costi (CPS).',
         total_speso: 100,
         flotta_spesa: 70,
         alignment_score: 40,
@@ -44,13 +45,15 @@ const performanceData = {
  * Calcola e restituisce la stringa conic-gradient.
  */
 function getDoughnutGradient(total_speso, flotta_spesa) {
-    const spesa_altre_voci = 35; // Marketing (20) + Formazione (10) + Routing (5)
+    const marketing_spesa = 20;
+    const formazione_spesa = 10;
+    const routing_spesa = 5;
 
-    // Calcolo delle proporzioni in base alla spesa ATTUALE (total_speso)
+    // Calcolo delle proporzioni (dal totale speso)
     const flotta_prop = flotta_spesa / total_speso; 
-    const marketing_prop = 20 / total_speso;
-    const formazione_prop = 10 / total_speso;
-    const routing_prop = 5 / total_speso;
+    const marketing_prop = marketing_spesa / total_speso;
+    const formazione_prop = formazione_spesa / total_speso;
+    const routing_prop = routing_spesa / total_speso;
 
     // Punti di inizio (in gradi)
     const start_marketing = flotta_prop * 360;
@@ -71,14 +74,19 @@ function updateDashboard() {
     
     if (!data) return;
 
-    // Funzione helper per l'effetto neon sui punteggi
-    const getNeonShadow = (color) => `0 0 10px ${color}, 0 0 20px ${color}`;
-
-    // 1. Aggiorna lo Score di Allineamento (IMPATTO)
+    // 1. Aggiorna lo Score di Allineamento
     const scoreBox = document.getElementById('alignment-score');
     scoreBox.textContent = `${data.alignment_score}%`;
     scoreBox.style.color = data.color;
-    scoreBox.style.textShadow = getNeonShadow(data.color);
+    // La scala di colori per il punteggio (verde->giallo->rosso)
+    if (data.alignment_score < 50) {
+        scoreBox.style.color = performanceData.low.color;
+    } else if (data.alignment_score < 80) {
+        scoreBox.style.color = performanceData.medium.color;
+    } else {
+        scoreBox.style.color = performanceData.high.color;
+    }
+
 
     // 2. Aggiorna i KPI Dettagliati
     const kpi_elements = [
@@ -96,10 +104,8 @@ function updateDashboard() {
         card.style.borderTop = `4px solid ${data.color}`;
         
         indicator.style.backgroundColor = data.color;
-        indicator.style.color = '#10151c'; // Testo scuro
-        indicator.querySelector('.kpi-value').textContent = kpi.value;
-        indicator.style.boxShadow = getNeonShadow(data.color);
         
+        document.querySelector(`#kpi-${kpi.id} .kpi-value`).textContent = kpi.value;
         document.querySelector(`#kpi-${kpi.id} .kpi-target`).textContent = `Target: ${kpi.target_val}`;
     });
 
@@ -109,10 +115,9 @@ function updateDashboard() {
     impactMessage.style.backgroundColor = data.bg;
     impactMessage.style.color = data.color;
     impactMessage.style.border = `1px solid ${data.color}`;
-    impactMessage.style.boxShadow = `0 0 8px ${data.color}40`; // Soft shadow per il messaggio
 
     // 4. Aggiorna la Visualizzazione del Budget (Doughnut Chart)
-    const budget_text = `Budget Speso: €${data.total_speso}M (su €${total_budget}M Allocati)`;
+    const budget_text = `Spesa Attuale: €${data.total_speso}M (Allocato: €${total_budget}M)`;
                         
     document.getElementById('budget-status').innerHTML = `**${budget_text}**`;
     
