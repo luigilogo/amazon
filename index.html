@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Strategic Dashboard (BSC Preview)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Amazon: Esecuzione Strategica ESG & Logistica</h1>
+        <p>Anteprima Dashboard Interattiva - Progetto Assessment FDX Consulting </p>
+    </header>
+
+    <div class="container">
+        <div class="controls-panel">
+            <h2>Simulazione Performance (Impatto Strategico)</h2>
+            <label for="performance-level">Scegli lo Scenario di Esecuzione:</label>
+            <select id="performance-level" onchange="updateDashboard()">
+                <option value="low">1. Sotto il Target (Rosso)</option>
+                <option value="medium">2. Vicino al Target (Giallo)</option>
+                <option value="high" selected>3. Target Raggiunto (Verde)</option>
+            </select>
+            <p class="impact-message" id="impact-message">Performance eccellente: i KPI mostrano un impatto positivo sui costi operativi!</p>
+        </div>
+        
+        <hr>
+
+        <div class="strategic-map">
+            <h2>Mappa Strategica Amazon (Focalizzata sull'ESG)</h2>
+            <div class="perspective" id="finanziaria" data-kpi="Costo per Spedizione (CPS) - Riduzione del 5% annuo" data-budget="Budget Iniziativa Elettrica: €100M">
+                <h3>FINANZIARIA 💰</h3>
+                <p>Migliorare l'efficienza dei costi operativi</p>
+            </div>
+            <div class="arrow">↓ Causa-Effetto ↓</div>
+            <div class="perspective" id="clienti" data-kpi="Tasso di Acquisto Prodotti Sostenibili - Aumento del 20%" data-budget="Budget Marketing Sostenibile: €20M">
+                <h3>CLIENTI 🛍️</h3>
+                <p>Aumentare la fedeltà dei clienti orientati all'ESG</p>
+            </div>
+            <div class="arrow">↓ Causa-Effetto ↓</div>
+            <div class="perspective" id="interni" data-kpi="Logistica Ultimo Miglio Elettrica - Raggiungere il 50%" data-budget="Budget Algoritmi Routing: €5M">
+                <h3>PROCESSI INTERNI ⚙️</h3>
+                <p>Ottimizzare la catena di approvvigionamento green</p>
+            </div>
+            <div class="arrow">↓ Causa-Effetto ↓</div>
+            <div class="perspective" id="apprendimento" data-kpi="Dipendenti Certificati in Sostenibilità - Aumento di 1.500" data-budget="Budget Formazione: €10M">
+                <h3>APPRENDIMENTO & CRESCITA 🌱</h3>
+                <p>Sviluppare competenze in Green Tech</p>
+            </div>
+        </div>
+        
+        <hr>
+
+        <div class="budget-viz">
+            <h2>Esplicitazione Strategia: Budget di Investimento per Iniziative Green (Anno 1)</h2>
+            <p>Il Budget Finanziario/Economico di €135M è allineato all'iniziativa Finanziaria "Riduzione Costi tramite Efficienza Green".</p>
+            <div class="chart-container">
+                <div class="bar" id="bar-flotta">Flotta Elettrica (€100M)</div>
+                <div class="bar" id="bar-marketing">Marketing (€20M)</div>
+                <div class="bar" id="bar-formazione">Formazione (€10M)</div>
+                <div class="bar" id="bar-routing">Routing (€5M)</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Usa la funzione di simulazione sopra per vedere l'impatto della performance sui KPI strategici.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
