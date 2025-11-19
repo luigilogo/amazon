@@ -1,0 +1,78 @@
+const bscData = [
+    // 1. Prospettiva Finanziaria 💰
+    {
+        prospettiva: '💰 Finanziaria',
+        obiettivo: 'Aumentare il Ricavo Netto',
+        kpi: 'Crescita Ricavi (YoY)',
+        attuale: 0.18,
+        target: 0.20,
+        unita: '%',
+        commenti: 'Crescita robusta, ma sotto il target aggressivo a causa delle fluttuazioni del mercato.',
+    },
+    {
+        prospettiva: '💰 Finanziaria',
+        obiettivo: 'Migliorare la Redditività',
+        kpi: 'Margine Operativo',
+        attuale: 0.12,
+        target: 0.10,
+        unita: '%',
+        commenti: 'L\'efficienza operativa ha portato a superare l\'obiettivo di redditività.',
+    },
+    // 2. Prospettiva Cliente 🤝
+    {
+        prospettiva: '🤝 Cliente',
+        obiettivo: 'Massimizzare la Soddisfazione',
+        kpi: 'Net Promoter Score (NPS)',
+        attuale: 75,
+        target: 70,
+        unita: 'Punti',
+        commenti: 'Ottimo lavoro del Customer Service, NPS molto positivo.',
+    },
+    {
+        prospettiva: '🤝 Cliente',
+        obiettivo: 'Fidelizzare la Base Utenti',
+        kpi: 'Tasso di Abbandono (Churn Rate)',
+        attuale: 0.05,
+        target: 0.04,
+        unita: '%',
+        commenti: 'Leggero aumento del Churn, analizzare le cause di abbandono post-vendita.',
+    },
+    // 3. Prospettiva Processi Interni ⚙️
+    {
+        prospettiva: '⚙️ Processi Interni',
+        obiettivo: 'Eccellenza Logistica',
+        kpi: 'Tempo Medio di Consegna',
+        attuale: 2.1,
+        target: 2.0,
+        unita: 'Giorni',
+        commenti: 'I rallentamenti nella supply chain mantengono il tempo di consegna sopra il target.',
+    },
+    {
+        prospettiva: '⚙️ Processi Interni',
+        obiettivo: 'Ridurre gli Errori Operativi',
+        kpi: 'Percentuale di Ordini Difettosi (ODR)',
+        attuale: 0.005,
+        target: 0.007,
+        unita: '%',
+        commenti: 'Processi interni molto efficienti. Risultato superiore al target.',
+    },
+    // 4. Prospettiva Apprendimento e Crescita 🌱
+    {
+        prospettiva: '🌱 Apprendimento',
+        obiettivo: 'Sviluppare le Competenze',
+        kpi: 'Ore di Formazione per Dipendente',
+        attuale: 45,
+        target: 50,
+        unita: 'Ore',
+        commenti: 'La partecipazione ai corsi di sviluppo è calata nell\'ultimo trimestre. Promuovere i nuovi moduli.',
+    },
+    {
+        prospettiva: '🌱 Apprendimento',
+        obiettivo: 'Migliorare il Clima Aziendale',
+        kpi: 'Tasso di Turnover del Personale',
+        attuale: 0.15,
+        target: 0.12,
+        unita: '%',
+        commenti: 'Alto turnover! Urgente avviare un piano di retention e benefit.',
+    },
+];
