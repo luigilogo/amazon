@@ -88,30 +88,17 @@ main {
 .semaforo.verde {
     background-color: var(--success-color);
     color: white;
-    animation: pulse-green 1.5s infinite;
 }
 .semaforo.giallo {
     background-color: var(--warning-color);
     color: var(--text-dark);
-    animation: pulse-yellow 2s infinite;
 }
 .semaforo.rosso {
     background-color: var(--danger-color);
     color: white;
-    animation: pulse-red 1s infinite;
 }
 
-/* Animazioni per evidenziare lo stato critico */
-@keyframes pulse-red {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
-}
-@keyframes pulse-yellow {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-    100% { transform: scale(1); }
-}
+/* Animazioni (L'animazione è stata rimossa per il giallo/rosso per evitare eccessiva distrazione, ma il colore evidenzia lo stato) */
 
 /* Footer */
 footer {
