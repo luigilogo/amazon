@@ -3,111 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amazon Strategic Dashboard - FDX Consulting</title>
+    <title>Balanced Scorecard Interattiva</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
 <body>
 
     <header>
-        <div class="header-content">
-            <i class="fas fa-cubes"></i>
-            <h1>AMAZON STRATEGIC CONTROL CENTER</h1>
-            <p>Balanced Scorecard (ESG Focus) & Budget Alignment Simulator</p>
-        </div>
+        <h1>Balanced Scorecard Dinamica</h1>
+        <p>Monitoraggio Strategico della Performance Aziendale (Simulazione)</p>
     </header>
 
-    <div class="container">
-        
-        <div class="controls-panel card">
-            <div class="control-group">
-                <label for="performance-level"><i class="fas fa-play-circle"></i> SIMULATORE DI SCENARIO:</label>
-                <select id="performance-level" onchange="updateDashboard()">
-                    <option value="high" selected>Scenario 1: Allineamento Ottimale</option>
-                    <option value="medium">Scenario 2: Rischio Processi Interni</option>
-                    <option value="low">Scenario 3: Crisi Strategica</option>
-                </select>
-            </div>
-            
-            <div class="alignment-score" id="alignment-score-box">
-                <span class="score-label">BUDGET ALIGNMENT SCORE:</span>
-                <span class="score-value" id="alignment-score">98%</span>
-            </div>
+    <main>
+        <section class="chart-container">
+            <h2>Riepilogo Performance KPI</h2>
+            <canvas id="performanceChart"></canvas>
+        </section>
 
-            <div class="impact-message" id="impact-message">Performance eccellente: i KPI indicano una piena riuscita della strategia ESG/Logistica.</div>
-        </div>
-
-        <div class="dashboard-grid">
-            
-            <div class="kpi-card card" id="kpi-finanziaria">
-                <i class="fas fa-chart-line perspective-icon"></i>
-                <h3>FINANZIARIA: CPS (Costo Spedizione)</h3>
-                <p class="kpi-target">Target: Riduzione del 5% annuo</p>
-                <div class="kpi-main">
-                    <span class="kpi-value"></span>
-                    <div class="indicator" id="ind-finanziaria"></div>
-                </div>
-            </div>
-
-            <div class="kpi-card card" id="kpi-clienti">
-                <i class="fas fa-leaf perspective-icon"></i>
-                <h3>CLIENTI: Tasso Acquisto Sostenibile</h3>
-                <p class="kpi-target">Target: Aumento del 20%</p>
-                <div class="kpi-main">
-                    <span class="kpi-value"></span>
-                    <div class="indicator" id="ind-clienti"></div>
-                </div>
-            </div>
-
-            <div class="kpi-card card" id="kpi-interni">
-                <i class="fas fa-route perspective-icon"></i>
-                <h3>PROCESSI: Ultimo Miglio Elettrico</h3>
-                <p class="kpi-target">Target: Raggiungere il 50%</p>
-                <div class="kpi-main">
-                    <span class="kpi-value"></span>
-                    <div class="indicator" id="ind-interni"></div>
-                </div>
-            </div>
-
-            <div class="kpi-card card" id="kpi-apprendimento">
-                <i class="fas fa-graduation-cap perspective-icon"></i>
-                <h3>CRESCITA: Certificazioni Green Tech</h3>
-                <p class="kpi-target">Target: Aumento di 1.500</p>
-                <div class="kpi-main">
-                    <span class="kpi-value"></span>
-                    <div class="indicator" id="ind-apprendimento"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="strategic-budget-area">
-            
-            <div class="strategic-map card">
-                <h2><i class="fas fa-map-marked-alt"></i> MAPPA STRATEGICA (Relazioni Causa-Effetto)</h2>
-                <p>La **Mappa Strategica** collega la spesa in **Formazione (Crescita)** e l'ottimizzazione dei **Processi** (Elettrico) per migliorare la fedeltà dei **Clienti** (ESG) e ottenere risultati **Finanziari** (Riduzione CPS). 
-
-[Image of a Balanced Scorecard strategic map]
-</p>
-                <p class="map-note">Osserva come il simulatore in alto (Budget Alignment Score) influisce su tutte le prospettive.</p>
-            </div>
-
-            <div class="budget-viz card">
-                <h2><i class="fas fa-calculator"></i> BUDGETING: ALLOCAZIONE STRATEGICA</h2>
-                <div class="chart-container">
-                    <div id="doughnut-chart"></div>
-                </div>
-                
-                <div class="budget-status" id="budget-status"></div>
-                <div class="chart-legend"></div>
-            </div>
-        </div>
-    </div>
+        <section class="bsc-table-container">
+            <h2>Dettaglio Prospettive e Indicatori</h2>
+            <table id="bsc-table">
+                <thead>
+                    <tr>
+                        <th>Prospettiva</th>
+                        <th>Obiettivo Strategico</th>
+                        <th>KPI</th>
+                        <th>Valore Attuale</th>
+                        <th>Target</th>
+                        <th>Stato</th>
+                        <th>Azioni e Commenti</th>
+                    </tr>
+                </thead>
+                <tbody id="bsc-body">
+                    </tbody>
+            </table>
+        </section>
+    </main>
 
     <footer>
-        <p>Assessment FDX Consulting | Università di Torino | Progetto Strategico Amazon</p>
+        <p>&copy; 2025 BSC Project - Dati caricati dinamicamente</p>
     </footer>
 
+    <script src="data.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
