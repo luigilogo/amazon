@@ -3,25 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balanced Scorecard Interattiva</title>
+    <title>Balanced Scorecard Interattiva - Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 </head>
 <body>
 
     <header>
-        <h1>Balanced Scorecard Dinamica 📈</h1>
-        <p>Monitoraggio Strategico della Performance Aziendale</p>
+        <h1>Balanced Scorecard Dinamica 📊</h1>
+        <p>Monitoraggio Strategico e Dashboard di Performance</p>
     </header>
 
     <main>
-        <section class="chart-container">
-            <h2>Riepilogo Stato KPI</h2>
-            <canvas id="performanceChart"></canvas>
+        <section class="dashboard-summary">
+            <h2>Cruscotto di Riepilogo (Performance Generale)</h2>
+            <div class="summary-indicators">
+                <div id="kpi-total" class="indicator-box"></div>
+                <div id="kpi-in-target" class="indicator-box green"></div>
+                <div id="kpi-at-risk" class="indicator-box red"></div>
+                <div id="kpi-avg-score" class="indicator-box blue"></div>
+            </div>
         </section>
 
+        <section class="chart-container">
+            <h2>Confronto Performance (Attuale vs Target)</h2>
+            <canvas id="performanceComparisonChart"></canvas>
+        </section>
+        
         <section class="bsc-table-container">
             <h2>Dettaglio Prospettive e Indicatori</h2>
+            <label for="prospettiva-filter">Filtra per Prospettiva:</label>
+            <select id="prospettiva-filter">
+                <option value="Tutti">Tutte le Prospettive</option>
+                </select>
+            
             <table id="bsc-table">
                 <thead>
                     <tr>
