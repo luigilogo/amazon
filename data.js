@@ -1,78 +1,111 @@
-const bscData = [
-    // 1. Prospettiva Finanziaria 💰
-    {
-        prospettiva: '💰 Finanziaria',
-        obiettivo: 'Aumentare il Ricavo Netto',
-        kpi: 'Crescita Ricavi (YoY)',
-        attuale: 0.18,
-        target: 0.20,
-        unita: '%',
-        commenti: 'Crescita robusta, ma sotto il target aggressivo a causa delle fluttuazioni del mercato.',
-    },
-    {
-        prospettiva: '💰 Finanziaria',
-        obiettivo: 'Migliorare la Redditività',
-        kpi: 'Margine Operativo',
-        attuale: 0.12,
-        target: 0.10,
-        unita: '%',
-        commenti: 'L\'efficienza operativa ha portato a superare l\'obiettivo di redditività.',
-    },
-    // 2. Prospettiva Cliente 🤝
-    {
-        prospettiva: '🤝 Cliente',
-        obiettivo: 'Massimizzare la Soddisfazione',
-        kpi: 'Net Promoter Score (NPS)',
-        attuale: 75,
-        target: 70,
-        unita: 'Punti',
-        commenti: 'Ottimo lavoro del Customer Service, NPS molto positivo.',
-    },
-    {
-        prospettiva: '🤝 Cliente',
-        obiettivo: 'Fidelizzare la Base Utenti',
-        kpi: 'Tasso di Abbandono (Churn Rate)',
-        attuale: 0.05,
-        target: 0.04,
-        unita: '%',
-        commenti: 'Leggero aumento del Churn, analizzare le cause di abbandono post-vendita.',
-    },
-    // 3. Prospettiva Processi Interni ⚙️
-    {
-        prospettiva: '⚙️ Processi Interni',
-        obiettivo: 'Eccellenza Logistica',
-        kpi: 'Tempo Medio di Consegna',
-        attuale: 2.1,
-        target: 2.0,
-        unita: 'Giorni',
-        commenti: 'I rallentamenti nella supply chain mantengono il tempo di consegna sopra il target.',
-    },
-    {
-        prospettiva: '⚙️ Processi Interni',
-        obiettivo: 'Ridurre gli Errori Operativi',
-        kpi: 'Percentuale di Ordini Difettosi (ODR)',
-        attuale: 0.005,
-        target: 0.007,
-        unita: '%',
-        commenti: 'Processi interni molto efficienti. Risultato superiore al target.',
-    },
-    // 4. Prospettiva Apprendimento e Crescita 🌱
-    {
-        prospettiva: '🌱 Apprendimento',
-        obiettivo: 'Sviluppare le Competenze',
-        kpi: 'Ore di Formazione per Dipendente',
-        attuale: 45,
-        target: 50,
-        unita: 'Ore',
-        commenti: 'La partecipazione ai corsi di sviluppo è calata nell\'ultimo trimestre. Promuovere i nuovi moduli.',
-    },
-    {
-        prospettiva: '🌱 Apprendimento',
-        obiettivo: 'Migliorare il Clima Aziendale',
-        kpi: 'Tasso di Turnover del Personale',
-        attuale: 0.15,
-        target: 0.12,
-        unita: '%',
-        commenti: 'Alto turnover! Urgente avviare un piano di retention e benefit.',
-    },
-];
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --background-light: #f8f9fa;
+    --text-dark: #343a40;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Grafici */
+.chart-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+/* Tabella BSC */
+.bsc-table-container {
+    overflow-x: auto; /* Rende la tabella scrollabile su mobile */
+}
+
+#bsc-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+#bsc-table th, #bsc-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+#bsc-table th {
+    background-color: #e9ecef;
+    font-weight: 600;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+#bsc-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Semforo - Stile Interattivo */
+.semaforo {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.semaforo.verde {
+    background-color: var(--success-color);
+    color: white;
+}
+.semaforo.giallo {
+    background-color: var(--warning-color);
+    color: var(--text-dark);
+}
+.semaforo.rosso {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Animazioni (L'animazione è stata rimossa per il giallo/rosso per evitare eccessiva distrazione, ma il colore evidenzia lo stato) */
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #343a40;
+    color: white;
+    font-size: 0.85em;
+}
