@@ -9,28 +9,35 @@ document.addEventListener('DOMContentLoaded', () => {
         let redCount = 0;
 
         data.forEach(item => {
-            const row = bscBody.insertRow();
             
             // 1. Calcolo dello Stato (Semaforo)
             let statoClasse = 'rosso';
             let statoIcona = '🔴 Rischio';
             
-            // Per KPI dove *più alto è meglio* (es. Ricavi, NPS)
-            if (item.kpi.includes('Crescita') || item.kpi.includes('NPS') || item.kpi.includes('Margine') || item.kpi.includes('Ore')) {
+            // Definisce se il KPI è "più alto è meglio" (HTB - Higher The Better)
+            // o "più basso è meglio" (LTB - Lower The Better)
+            const isHTB = !(item.kpi.includes('Tasso di Abbandono') || 
+                            item.kpi.includes('Tempo Medio') || 
+                            item.kpi.includes('Ordini Difettosi') || 
+                            item.kpi.includes('Turnover'));
+
+            if (isHTB) {
+                // HTB: Verde se Attuale >= Target
                 if (item.attuale >= item.target) {
                     statoClasse = 'verde';
                     statoIcona = '🟢 In Target';
                 } else if (item.attuale >= item.target * semaforoSoglia) {
+                    // Giallo se Attuale è almeno il 90% del Target
                     statoClasse = 'giallo';
                     statoIcona = '🟡 Attenzione';
                 }
-            } 
-            // Per KPI dove *più basso è meglio* (es. Churn, Tempo di Consegna, ODR, Turnover)
-            else if (item.kpi.includes('Tasso di Abbandono') || item.kpi.includes('Tempo Medio') || item.kpi.includes('Ordini Difettosi') || item.kpi.includes('Turnover')) {
-                 if (item.attuale <= item.target) {
+            } else {
+                // LTB: Verde se Attuale <= Target
+                if (item.attuale <= item.target) {
                     statoClasse = 'verde';
                     statoIcona = '🟢 In Target';
-                } else if (item.attuale <= item.target / semaforoSoglia) { // Ad esempio, non più del 111% del target
+                } else if (item.attuale <= item.target / semaforoSoglia) { 
+                    // Giallo se Attuale è al massimo il 111% del Target (1 / 0.9)
                     statoClasse = 'giallo';
                     statoIcona = '🟡 Attenzione';
                 }
@@ -44,12 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 3. Formattazione dei Valori
             const formatValue = (value, unit) => {
+                // Se è un valore piccolo (come l'ODR), usa più decimali
+                if (value < 0.1 && unit === '%') return (value * 100).toFixed(3) + '%';
                 if (unit === '%') return (value * 100).toFixed(2) + '%';
-                if (unit === 'Punti' || unit === 'Ore') return value;
+                if (unit === 'Giorni' || unit === 'Punti' || unit === 'Ore') return value.toFixed(1);
                 return value.toFixed(2);
             };
 
             // 4. Inserimento delle celle nella riga
+            const row = bscBody.insertRow();
             row.innerHTML = `
                 <td>${item.prospettiva}</td>
                 <td>${item.obiettivo}</td>
@@ -61,13 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         });
         
-        // Crea il grafico di riepilogo
+        // 5. Crea il grafico di riepilogo
         createSummaryChart(greenCount, yellowCount, redCount);
     }
     
-    // Funzione per creare il grafico a torta/ciambella (Chart.js)
+    // Funzione per creare il grafico a ciambella (Chart.js)
     function createSummaryChart(green, yellow, red) {
         const ctx = document.getElementById('performanceChart').getContext('2d');
+        
+        // Verifica se ci sono dati da mostrare
+        if (green + yellow + red === 0) {
+            ctx.fillText("Nessun dato KPI disponibile.", 10, 50);
+            return;
+        }
+
         new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -75,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     data: [green, yellow, red],
                     backgroundColor: [
-                        '#28a745', // Verde
-                        '#ffc107', // Giallo
-                        '#dc3545'  // Rosso
+                        '#28a745', 
+                        '#ffc107', 
+                        '#dc3545'  
                     ],
                     hoverOffset: 4
                 }]
@@ -90,7 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     title: {
                         display: true,
-                        text: 'Riepilogo Stato KPI (Totale: ' + bscData.length + ')'
+                        text: 'Riepilogo Stato KPI (Totale: ' + bscData.length + ')',
+                        font: {
+                            size: 16
+                        }
                     }
                 }
             }
